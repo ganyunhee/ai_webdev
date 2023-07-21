@@ -66,6 +66,10 @@ li {
     font-size: 15px;
 }
 
+.navigation li a:hover {
+    color: var(--foreground);
+}
+
 main {
     width: 100rem;
     display: flex;
