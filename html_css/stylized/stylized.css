@@ -1,0 +1,128 @@
+:root {
+    --background: #1A1A1A;
+    --middleground: #262926;
+    --foreground: #303531;
+    --white: #FCFCFC;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Victor Mono', 'Noto Sans KR', 'monospace';
+    font-size: 18px;
+    background-color: var(--background);
+    color: var(--white);
+    justify-content: space-between;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    font-size: 20px;
+    clear: both;
+}
+
+nav {
+    width: 100vh;
+    align-items: left;
+    /*border: solid var(--white);*/
+    padding-right: 850px;
+}
+
+.blog_title {
+    float: right;
+    width: 50vh;
+    align-self: right;
+    justify-content: right;
+    padding: 20px;
+    /*border: solid var(--white);*/
+}
+
+ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+li {
+    float: left;
+}
+
+.navigation {
+    overflow: visible;
+}
+
+.navigation li a {
+    display: inline-block;
+    color: var(--white);
+    padding: 20px;
+    text-decoration: none;
+    /*edit later with font size 20px*/
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+main {
+    width: 100rem;
+    display: flex;
+    flex-direction: row;
+    /*background-color: var(--middleground);*/
+    justify-content: space-between;
+}
+
+#main_bg_img {
+    position: absolute;
+    z-index: -1;
+    vertical-align: middle;
+    width: 1600px;
+    height: 900px;
+    /*height: 530px;*/
+    /*crop image via clip-path() function*/
+    clip-path: inset(0px 0px 370px 0px);
+}
+
+section, aside {
+    height: 200px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.contents_summary {
+    list-style: circle;
+}
+
+.contents_summary {
+    padding-left: 15px;
+}
+
+section { 
+    width: 910px;
+    height: 60vh;
+    margin-left: 20rem;
+    display: inline-block;
+    /*border: solid var(--foreground);*/
+}
+
+aside {
+    display: inline-block;
+    height: 60vh;
+    width: 200px;
+    /*border: solid var(--foreground);*/
+}
+
+footer {
+    width: 100%;
+    height: 5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    font-size: 20px;
+    padding: 20px;
+    align-items: center;
+    /*border: solid var(--middleground);*/
+}
