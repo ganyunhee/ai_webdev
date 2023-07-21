@@ -49,6 +49,9 @@ form input {
 
 button {
     display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     border: none;
     font-family: 'Victor Mono', monospace;
