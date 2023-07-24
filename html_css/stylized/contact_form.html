@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="stylized.css">
+    <link rel="stylesheet" type="text/css" href="contact_form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Victor+Mono&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:wght@400;700;800&display=swap">
-    <title>Codename | EUNS</title>
+    <title>Codename | EUNS - Keep in Touch</title>
 </head>
-<body> <!-- set flex direction to column -->
+<body>
     <header>
         <nav class="navigation">
             <ul>
@@ -19,25 +18,29 @@
                 <li><a href="blog.html">BLOG</a></li>
                 <li><a href="404_page.html">WORKS</a></li>
                 <li><a href="https://github.com/ganyunhee">SOURCE</a></li>
-                <li><a href="contact_form.html">CONTACT</a></li>
+                <li><a href="stylized_form.html">CONTACT</a></li>
             </ul>
         </nav>
         <div class="blog_title"><h3>CODENAME | EUNS</h3></div>
     </header>
 
-    <div class="contents">
-        <main>
-            <img id="main_bg_img" src="images/sample.jpg" alt="Background Image">
-            <div class="white_space"></div>
-            <h1><span class="codeline_icon">></span> SLOWLY</h1>
-            <h1><span class="codeline_icon">></span> GETTING</h1>
-            <h1><span class="codeline_icon">></span> SOMEWHERE ______________</h1>
-        </main>
-    </div>
+    <main>
+        <div class="caption">
+            <h1>Hi, new friend!</h1>
+            <h2>Let's chat.</h2>
 
-    <footer>
-        <div>This is the footer.</div>
-    </footer>
+            <h3>Here's my email.</h3>
+            <p>this_is_my_email@email.com</p>
+        </div>
+        <div class="form_page">
+            <form id="contact_form">
+                <label>Name</label><br><input type="text" name="name" placeholder="Your Name"><br>
+                <label>E-mail</label><br><input type="email" name="email" placeholder="Your E-mail"><br>
+                <label>Message</label><br><textarea name="message" placeholder="Leave me a message ..." form="contact_form"></textarea><br>
+                <button>Submit</button>
+            </form>
+        </div>
+    </main>
+
 </body>
-
 </html>
