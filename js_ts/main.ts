@@ -1,0 +1,192 @@
+let board: string[][] = [];
+var row = 0;
+var col = 0;
+
+// FUNCTION. initialize 30x30 board with '-'
+function init() {
+    // traverse rows
+    for (let i=0; i < 30; i++) {
+        const row: string[] = [];
+        // traverse columns
+        for (let j=0; j < 30; j++) {    
+            row.push('-');
+        }
+        board.push(row);
+    }
+}
+
+// FUNCTION. print out board contents
+function output() {
+    for (const row of board) {
+        console.log(row.join(' '));
+    }
+}
+
+
+// FUNCTION. update the board
+// -- based on player input
+function update(row: number, col: number, player: number) {
+    if(board[row][col] === '-') {
+        board[row][col] = player === 1 ? 'B' : 'W';
+        return true;
+    }
+    return false;
+}
+
+// FUNCTION. get user input (continuous)
+async function getPlayerInput(player: number) {
+    // import readline module
+    const rl = require('readline').createInterface ({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    // read and return user input
+    return new Promise<string>((resolve) => {
+        rl.question(`Player ${player}'s turn (row col): `, (response) => {
+            rl.close();
+            resolve(response);
+        });
+    });
+}
+
+// FUNCTION. Check if player wins
+// -- win condition logic :
+// -- check if any row, column, diagonal has five matching symbols
+function checkWinCondition(): boolean {
+    // check rows
+    for (let i = 0; i < 30; i++) {
+        let countB = 0;
+        let countW = 0;
+        for (let j = 0; j < 30; j++) {
+            if (board[i][j] === 'B') {
+                countB++;
+                countW = 0;
+            } else if (board[i][j] === 'W') {
+                countW++;
+                countB = 0;
+            } else {
+                countB = 0;
+                countW = 0;
+            }
+
+            if (countB === 5 || countW === 5) {
+                return true;
+            }
+        }
+    }
+
+    // check columns
+    for (let j = 0; j < 30; j++) {
+            let countB = 0;
+            let countW = 0;
+            for (let i = 0; i < 30; i++) {
+            if (board[i][j] === 'B') {
+                countB++;
+                countW = 0;
+            } else if (board[i][j] === 'W') {
+                countW++;
+                countB = 0;
+            } else {
+                countB = 0;
+                countW = 0;
+            }
+
+            if (countB === 5 || countW === 5) {
+                return true;
+            }
+        }
+    }
+
+    // check diagonals
+    for (let i = 0; i < 30; i++) {
+        for (let j = 0; j < 30; j++) {
+            // check diagonals
+            // start from (i, j) going right and down
+            let countB = 0;
+            let countW = 0;
+            for (let k = 0; k < 5; k++) {
+                if (i + k < 30 && j + k < 30) {
+                    if (board[i + k][j + k] === 'B') {
+                        countB++;
+                        countW = 0;
+                    } else if (board[i + k][j + k] === 'W') {
+                        countW++;
+                        countB = 0;
+                    } else {
+                        countB = 0;
+                        countW = 0;
+                    }
+
+                    if (countB === 5 || countW === 5) {
+                        return true;
+                    }
+                }
+            }
+
+            // Check diagonals starting from position (i, j) going right and up
+            countB = 0;
+            countW = 0;
+                for (let k = 0; k < 5; k++) {
+                    if (i - k >= 0 && j + k < 30) {
+                        if (board[i - k][j + k] === 'B') {
+                            countB++;
+                            countW = 0;
+                        } else if (board[i - k][j + k] === 'W') {
+                            countW++;
+                            countB = 0;
+                        } else {
+                            countB = 0;
+                            countW = 0;
+                        }
+
+                        if (countB === 5 || countW === 5) {
+                            return true;
+                        }
+                    }
+                }
+            }
+    }
+
+    return false;
+}
+
+// FUNCTION. play
+// -- continuosly prompt to get user input and check for winner
+async function playGame() {
+    // initialize
+    init();
+    let currentPlayer = 1;
+
+    // check for win
+    while (!checkWinCondition()) {
+        // print board
+        output();
+
+        // await user input
+        const input = await getPlayerInput(currentPlayer);
+        const [row, col] = input.split(' ').map((coord) => parseInt(coord));
+
+        // check for valid moves
+        if (row >= 0 && row < 30 && col >= 0 && col < 30) {
+            const validMove = update(row, col, currentPlayer);
+            if (validMove) {
+                currentPlayer = currentPlayer === 1 ? 2 : 1;
+            } else {
+                console.log('Invalid move. Try again.');
+            }
+        } else {
+            console.log('Invalid input. Try again.');
+        }
+    }
+
+    // end game
+    output();
+    console.log(`GAME OVER. Player ${currentPlayer === 1 ? '1' : '1'} wins!`);
+}
+
+// run game
+// -- if error persists, print error
+playGame().catch((error) => console.error(error));
+
+
