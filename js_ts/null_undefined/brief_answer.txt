@@ -1,0 +1,5 @@
+undefined하고 null은 둘 다 정의된 값이 없음을 나타낸다.
+- undefined는 변수가 선언되었지만 값이 없음을 나타내요 
+  (변수 이름만 정했고 아직 값이 없음, "will 또는 supposed to have a value")
+- null은 아예 값이 없음을 나타내요 
+  (변수가 값을 가지고 있지 않음, empty 또는 "no value"랑 비슷함)
