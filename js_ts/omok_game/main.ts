@@ -17,6 +17,7 @@ function init() {
 
 // FUNCTION. print out board contents
 function output() {
+    console.log("\n");
     for (const row of board) {
         console.log(row.join(' '));
     }
@@ -156,10 +157,31 @@ function checkWinCondition(): boolean {
 async function playGame() {
     // initialize
     init();
+
     let currentPlayer = 1;
+    // flags
+    let isGameWon = false;
+    let isTimeout = false;
+
+    function checkAndSetGameWon() {
+        if(checkWinCondition()) {
+            isGameWon = true;
+        }
+    }
+
+    function handleTimeout() {
+        isTimeout = true;
+        output();
+        console.log("DRAW. Five minutes have passed. No player has won.");
+        return;
+    }
+
+    // set timer to 5 minutes in milliseconds
+    const timeout = setTimeout(handleTimeout, 5 * 60 * 1000);
+
 
     // check for win
-    while (!checkWinCondition()) {
+    while (!isGameWon && !isTimeout) {
         // print board
         output();
 
@@ -172,6 +194,7 @@ async function playGame() {
             const validMove = update(row, col, currentPlayer);
             if (validMove) {
                 currentPlayer = currentPlayer === 1 ? 2 : 1;
+                checkAndSetGameWon(); // check if player makes a winning move
             } else {
                 console.log('Invalid move. Try again.');
             }
@@ -180,9 +203,12 @@ async function playGame() {
         }
     }
 
+    // cancel timeout at end of game
+    clearTimeout(timeout);
+
     // end game
     output();
-    console.log(`GAME OVER. Player ${currentPlayer === 1 ? '1' : '1'} wins!`);
+    console.log(`GAME OVER. Player ${currentPlayer === 1 ? '1' : '2'} wins!`);
 }
 
 // run game

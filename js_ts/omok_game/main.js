@@ -51,6 +51,7 @@ function init() {
 }
 // FUNCTION. print out board contents
 function output() {
+    console.log("\n");
     for (var _i = 0, board_1 = board; _i < board_1.length; _i++) {
         var row_2 = board_1[_i];
         console.log(row_2.join(' '));
@@ -188,16 +189,30 @@ function checkWinCondition() {
 // -- continuosly prompt to get user input and check for winner
 function playGame() {
     return __awaiter(this, void 0, void 0, function () {
-        var currentPlayer, input, _a, row_3, col_1, validMove;
+        function checkAndSetGameWon() {
+            if (checkWinCondition()) {
+                isGameWon = true;
+            }
+        }
+        function handleTimeout() {
+            isTimeout = true;
+            output();
+            console.log("DRAW. Five minutes have passed. No player has won.");
+            return;
+        }
+        var currentPlayer, isGameWon, isTimeout, timeout, input, _a, row_3, col_1, validMove;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     // initialize
                     init();
                     currentPlayer = 1;
+                    isGameWon = false;
+                    isTimeout = false;
+                    timeout = setTimeout(handleTimeout, 5 * 60 * 1000);
                     _b.label = 1;
                 case 1:
-                    if (!!checkWinCondition()) return [3 /*break*/, 3];
+                    if (!(!isGameWon && !isTimeout)) return [3 /*break*/, 3];
                     // print board
                     output();
                     return [4 /*yield*/, getPlayerInput(currentPlayer)];
@@ -209,6 +224,7 @@ function playGame() {
                         validMove = update(row_3, col_1, currentPlayer);
                         if (validMove) {
                             currentPlayer = currentPlayer === 1 ? 2 : 1;
+                            checkAndSetGameWon(); // check if player makes a winning move
                         }
                         else {
                             console.log('Invalid move. Try again.');
@@ -219,9 +235,11 @@ function playGame() {
                     }
                     return [3 /*break*/, 1];
                 case 3:
+                    // cancel timeout at end of game
+                    clearTimeout(timeout);
                     // end game
                     output();
-                    console.log("GAME OVER. Player ".concat(currentPlayer === 1 ? '1' : '1', " wins!"));
+                    console.log("GAME OVER. Player ".concat(currentPlayer === 1 ? '1' : '2', " wins!"));
                     return [2 /*return*/];
             }
         });
