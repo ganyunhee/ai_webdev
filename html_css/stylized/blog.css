@@ -97,7 +97,7 @@ li {
     color: var(--white);
 }
 
-.paginization {
+.pagination {
     margin-top: 5%;
     display: flex;
     align-items: center;
@@ -106,23 +106,23 @@ li {
     font-size: 20px;
 }
 
-.paginization a {
+.pagination a {
     text-decoration: none;
 }
 
-.paginization ul {
+.pagination ul {
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.paginization ul li {
+.pagination ul li {
     padding: 10px;
 }
 
-.paginization a:visited {
+.pagination a:visited {
     color: var(--white);
 }
 
-.paginization a:hover {
+.pagination a:hover {
     text-decoration: underline;
 }
