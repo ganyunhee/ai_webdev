@@ -2,7 +2,10 @@
 
 - [AI웹개발 취업캠프/정보통신산업진흥원(NIPA)] Main Page 과제
 
-## 0723_Output [LATEST]
+## 0727_Output [LATEST]
+![](https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/images/output_api/weather_date_time.png)
+
+## 0723_Output
 ![](https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/images/output_new/homepage_new.png)
 ![](https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/images/output_new/blogpage_new.png)
 ![](https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/images/output_new/blogpost_sample.png)
