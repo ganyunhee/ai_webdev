@@ -3,6 +3,8 @@
 - [AI웹개발 취업캠프/정보통신산업진흥원(NIPA)] Main Page 과제
 
 ## 0727_Output [LATEST]
+참고문서. https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/docs/AI%EC%9B%B9%EA%B0%9C%EB%B0%9C_0727_2%EC%A3%BC%EC%B0%A8_%EA%B3%BC%EC%A0%9C_%EC%A3%BC%EC%A0%9C2.md
+
 ![](https://github.com/ganyunhee/ai_webdev/blob/main/html_css/stylized/images/output_api/weather_date_time.png)
 
 ## 0723_Output
