@@ -91,7 +91,7 @@ main {
 }
 
 main .white_space {
-    margin-top: 150px;
+    margin-top: 20px;
 }
 
 main .codeline_icon {
@@ -122,4 +122,27 @@ footer {
     align-items: center;
     justify-content: flex-end;
     /*border: solid var(--middleground);*/
+}
+
+.misc {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-items: right;
+    margin: 10px 10px 0px 10px;
+    padding-bottom: 0px;
+}
+
+.misc div {
+    padding: 10px 20px 0px 20px;
+}
+
+#line_separator {
+    margin: 0px;
+    padding: 0px 20px 0px 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.weather_details {
+    font-size: 16px;
 }
