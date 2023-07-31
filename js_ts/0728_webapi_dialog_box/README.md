@@ -1,5 +1,7 @@
 
-webAPI의 dialog box인 **alert(), confirm()** 메소드는 window나 document 없이 바로 사용할 수 있는 이유 찾아보기
+# AI웹개발_0728_2주차_과제
+
+## webAPI의 dialog box인 **alert(), confirm()** 메소드는 window나 document 없이 바로 사용할 수 있는 이유 찾아보기
 
 `alert(), confirm()`
 - 브라우저의 window 객체에서 built-in 즉, 기본적으로 제공하는 또는 속해 있는 JavaScript 메소드이기 때문에 `document` 없이 바로 사용할 수 있는 함수들이다
