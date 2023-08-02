@@ -1,0 +1,49 @@
+TABLE. blog_posts
+-- blog post들의 metadata DB
+
+id : blog 글의 아이디
+title : blog 글 제목
+creation_date : blog 글을 생성한 날짜
+tag : 블로그 글의 키워드나 태그 (블로그 글 카테고리를 만들 때 사용)
+content_id : blog 내용에 해당되는 콘텐츠 아이디
+
+
+TABLE. blog_comment
+-- blog post에 유저들이 달았던 댓글 DB
+
+id : 댓글 아이디
+blog_id : 블로그 글 아이디 (foreign key) -- blog_posts의 id 참고
+author_name : 댓글 단 사람의 이름
+comment_text : 댓글 내영
+comment_date : 댓글 단 날짜
+
+
+TABLE. blog_content
+-- blog post의 내용 DB
+
+id : blog 콘텐츠 아이디
+blog_id : blog 글 아이디
+content_type : 콘텐츠의 자료 유형 (e.g. image, text, url)
+content_text : 텍스트 내용 (콘텐트가 텍스트 유형이면 기입)
+url_link : 이미지 url (콘텐츠가 이미지나 url 유형이면 기입)
+
+
+TABLE. contact_form
+-- contact form의 DB
+
+id : contact 폼에 입력한 entry의 아이디
+full_name : 내게 contact하고 싶은 유저의 이름
+email : 내게 contact하고 싶은 사람의 수신 이메일 주소
+message : 유저가 내게 전달하고 싶은 간단한 메세지 내용
+
+
+TABLE. works
+-- works 또는 프로젝트 섹션의 DB
+
+id : 프로젝트 아이디
+project_name : 프로젝트 이름
+start_date : 프로젝트를 시작한 날짜
+end_date : 프로젝트를 완성한 날짜
+
+
+
