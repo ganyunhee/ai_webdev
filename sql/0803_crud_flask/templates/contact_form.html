@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Victor+Mono&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:wght@400;700;800&display=swap">
+</head>
+<body>
+    <main>
+        <div class="caption">
+        </div>
+        <div class="form_page">
+            <form id="contact_form" action="{{ url_for('submit_contact_form') }}" method="POST">
+                <label>Name</label><br><input type="text" name="name" placeholder="Your Name"><br>
+                <label>E-mail</label><br><input type="email" name="email" placeholder="Your E-mail"><br>
+                <label>Message</label><br><textarea name="message" placeholder="Leave me a message ..." form="contact_form"></textarea><br>
+                <button>Submit</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

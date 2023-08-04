@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Victor+Mono&display=swap" rel="stylesheet">
+    <!--Use Bootstrap Table Component-->
+    <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <title>DB Connect - TEST</title>
+    <style>
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: #1A1A1A;
+        }
+        body {
+            background-color: #EEEDED;
+            font-family: 'Victor Mono', monospace;
+            padding : 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Form Messages</h1>
+    <!-- Insert table here -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Insert name, email, messages -->
+            {% for contact_req in contact_reqs %}
+                <tr>
+                    <td>{{ contact_req.id }}</td>
+                    <td>{{ contact_req.full_name }}</td>
+                    <td>{{ contact_req.email }}</td>
+                    <td>{{ contact_req.message }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="contact_form">{% include "contact_form.html" %}</div>
+
+    <br>
+
+    <h1>Blog Posts</h1>
+    <!-- Insert list here : blog_post.title -->
+    <!-- ** onclick of blog_title : display blog post contents -->
+    <ul>
+        {% for post in posts %}
+            <li><a href="#" data-blogid="{{ post.id}}" class="blog-post-link">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <br>
+
+    <h1>Blog Content Sample</h1>
+    <!-- Display Blog Content on side -->
+    <div id="blog-content">Contents to be displayed here.</div>
+    
+    <br>
+
+    <h1>Comments</h1>
+    <!-- Insert table here : blog_id | author_name | comment_text-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Blog Post Index</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">Text</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Insert name, email, messages -->
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.blog_id }}</td>
+                    <td>{{ comment.author_name }}</td>
+                    <td>{{ comment.comment_text }}</td>
+                    <td>{{ comment.comment_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        const blogContentDiv = document.getElementById("blog-content");
+        const blogPostLinks = document.querySelectorAll(".blog-post-link");
+
+        function displayBlogContent(blogId) {
+            fetch(`/get_blog_content/${blogId}`)
+                .then(response => response.json())
+                .then(data => {
+                    blogContentDiv.innerHTML = "";
+                    data.forEach(content => {
+                        const contentDiv = document.createElement("div");
+                        if (content.content_type === "text") {
+                            contentDiv.innerHTML = `<p>${content.content_text}</p>`;
+                        } else if (content.content_type === "image") {
+                            contentDiv.innerHTML = `<img src="${content.url_link}">`;
+                        }
+                        blogContentDiv.appendChild(contentDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching blog content:", error);
+                });
+        }
+
+        blogPostLinks.forEach(link => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const blogId = parseInt(link.dataset.blogid);
+                displayBlogContent(blogId);
+            })
+        })
+
+        /*
+        // Load HTML file via AJAX
+        function loadHTMLFile(url) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector(".contact_form").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        loadHTMLFile("/contact_form");
+        */
+
+    </script>
+</body>
+</html>

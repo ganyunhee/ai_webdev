@@ -1,0 +1,174 @@
+:root {
+    --background: #1A1A1A;
+    --middleground: #262926;
+    --foreground: #303531;
+    --white: #FCFCFC;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    font-size: 20px;
+    clear: both;
+}
+
+nav {
+    width: 100vh;
+    align-items: left;
+    /*border: solid var(--white);*/
+    padding-right: 850px;
+}
+
+.blog_title {
+    float: right;
+    width: 50vh;
+    align-self: right;
+    justify-content: right;
+    padding: 20px;
+    /*border: solid var(--white);*/
+}
+
+ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+li {
+    float: left;
+}
+
+.navigation {
+    overflow: visible;
+}
+
+.navigation li a {
+    display: inline-block;
+    color: var(--white);
+    padding: 20px;
+    text-decoration: none;
+    /*edit later with font size 20px*/
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.navigation li a:hover {
+    color: var(--foreground);
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    transform: translate(0, 3%);
+    border: 1px solid;
+}
+
+.caption {
+    font-family: 'Montserrat', sans-serif;
+    /*border: 2px solid;*/
+}
+
+.caption > * {
+    margin-left: 60px;
+}
+
+.caption h1 {
+    font-size: 65px;
+    margin-bottom: 5px;
+}
+
+.caption h2 {
+    font-size: 52px;
+    margin-top: 0px;
+}
+
+.caption p {
+    font-family: 'Victor Mono', monospace;
+    font-weight: 400;
+}
+
+.form_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    border: 1px solid white;
+    padding: 100px;
+    padding-top: 120px;
+    height: 400px;
+}
+
+form {
+    display: inline-block;
+    font-family: 'Victor Mono', monospace;
+    /*border: solid var(--white);*/
+}
+
+form input, textarea {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    width: 400px;
+    height: 30px;
+    padding: 5px 20px 5px 20px;
+    border: 1px solid var(--white);
+    background-color: rgb(0, 0, 0, 0);
+    color: var(--white);
+    font-family: 'Victor Mono', monospace;
+}
+
+form textarea {
+    height: 120px;
+    resize: none;
+    padding-top: 15px;
+}
+
+button {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    border: none;
+    font-family: 'Victor Mono', monospace;
+    font-weight: bold;
+    background-color: rgb(0, 0, 0, 0);
+    color: var(--white);
+    margin: 10px;
+    margin-top: 0px;
+    padding: 10px;
+    height: 50px;
+    width: 100px;
+    border: solid 0.5px var(--white);
+    box-shadow: 0px 0px 200px var(--white);
+}
+
+button:hover {
+    display: inline-block;
+    border: none;
+    font-family: 'Victor Mono', monospace;
+    font-weight: bold;
+    background-color: var(--white);
+    color: var(--middleground);
+    margin: 10px;
+    margin-top: 0px;
+    padding: 10px;
+    height: 50px;
+    width: 100px;
+    border: solid 0.5px var(--foreground);
+    box-shadow: 0px 0px 200px rgb(252, 252, 252, 0.9);
+}
