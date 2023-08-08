@@ -1,0 +1,22 @@
+SOLARIZED LIGHT
+
+dark greyish blue (text color)
+$base01:    #586e75;
+dark beige (shadow)
+$base2:     #eee8d5;
+light beige (background)
+$base3:     #fdf6e3;
+
+SOLARIZED DARK
+
+dark greyish blue (text color)
+$base1:     #93a1a1;
+or
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+
+dark blue (shadow)
+$base02:    #073642;
+
+darker blue (background)
+$base03:    #002b36;

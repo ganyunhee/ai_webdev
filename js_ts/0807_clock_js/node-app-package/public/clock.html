@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <title>JavaScript Clock</title>
+  <style>
+    @font-face {
+      font-family: 'LAB디지털';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    *{ 
+      font-family: 'Arvo';
+      box-sizing: border-box;
+      font-size: 100px;
+    }
+
+    body{
+      margin: 0;
+      /*color: #5c4500;*/
+      color: #586e75;
+      /*background-color: #002b36;*/
+      background-color: #fdf6e3;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .clock{
+      min-width: 360px;
+      margin: 0 auto;
+      padding: 100px;
+      text-align: center;
+      /*border: 10px solid #5c4500;*/
+      border: 10px solid #eee8d5;
+      background-color: #fdf6e3;
+      /*box-shadow: 10px 10px 0px 0px #5c4500;*/
+      box-shadow: 10px 10px 0px 0px #eee8d5;
+    }
+
+    .today{
+      margin-bottom: 10px;
+    }
+
+    .time{
+      margin-top: 10px;
+    }
+
+    .toggle-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 50px;
+      /*--light: #d8dbe0;*/
+      --light: #fdf6e3;
+      /*--dark: #28292c;*/
+      --dark: #586e75;
+      --dark2: #073642;
+      --link: rgb(27, 129, 112);
+      --link-hover: rgb(24, 94, 82);
+    }
+
+    .switch-label {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      background-color: var(--dark2);
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .checkbox {
+      position: absolute;
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+    }
+
+    .checkbox:checked ~ .slider {
+      background-color: var(--light);
+      border: 3px solid var(--dark);
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
+      box-shadow: inset 12px -4px 0px 0px var(--light);
+      background-color: var(--dark2);
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      border: 3px solid var(--dark2);
+    }
+
+    .checkbox:checked ~ .slider::before {
+      -webkit-transform: translateX(50px);
+      -ms-transform: translateX(50px);
+      transform: translateX(50px);
+      background-color: var(--dark);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-switch">
+    <label class="switch-label">
+      <input type="checkbox" class="checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="clock">
+    <div id="today" class="today"></div>
+    <div id="time" class="time"></div>
+  </div>
+  <script>
+    // 요소 선택
+    const todayDiv = document.getElementById('today');
+    const timeDiv = document.getElementById('time');
+
+    // getTime 함수
+    function getTime(){
+      let now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth() + 1;
+      let date = now.getDate();
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
+
+      // month 리스트
+      const months = [
+        'January', 'February', 'March', 
+        'April', 'May', 'June', 
+        'July', 'August', 'September',
+        'October', 'November', 'December'
+      ]
+
+      hour = hour < 10 ? `0${hour}` : hour;
+      minute = minute < 10 ? `0${minute}` : minute;
+      second = second < 10 ? `0${second}` : second;
+
+      // day를 ordinal number로 표시 (suffix 넣기)
+      date = date.toString();
+      date_end_char = date.slice(-2);
+      
+      // if 1 or 11 : 1st, 11th
+      if(date_end_char == '1') {
+        date = `${date}st`;
+        if (date_end_char == '11') {
+          date = `${date}th`;
+        }
+      }
+      
+      // if 2 or 12 : 2nd, 12th
+      if (date_end_char == '2') {
+        date = `${date}nd`;
+        if (date_end_char == '12') {
+          date = `${date}th`;
+        }
+      }
+
+      // if 3 or 13 : 3rd, 13th
+      if (date_end_char == '3') {
+        date = `${date}rd`;
+        if (date_end_char == '12') {
+          date = `${date}th`;
+        }
+      }
+
+      else {
+        date = `${date}th`
+      }
+
+      const amPm = hour >= 12 ? 'PM' : 'AM';
+
+      todayDiv.textContent = `${months[month]} ${date}, ${year}`;
+      timeDiv.textContent = `${hour}:${minute}:${second}\r${amPm}`;
+
+      const toggleSwitch = document.querySelector('.checkbox');
+      const clock = document.querySelector('.clock');
+
+      function changeTheme() {
+        const body = document.body;
+        const backgroundColor = toggleSwitch.checked ? '#fdf6e3' : '#002b36';
+        const borderColor = toggleSwitch.checked ? '10px solid #eee8d5' : '10px solid #073642';
+        const shadowColor = toggleSwitch.checked ? '10px 10px 0px 0px #eee8d5' : '10px 10px 0px 0px #073642';
+        const textColor = toggleSwitch.checked ? '#93a1a1' : '#586e75';
+        body.style.backgroundColor = backgroundColor;
+        clock.style.backgroundColor = backgroundColor;
+        clock.style.boxShadow = shadowColor;
+        clock.style.border = borderColor;
+        clock.style.color = textColor;
+      }
+
+      toggleSwitch.addEventListener('change', () => {
+        changeTheme();
+      });
+
+      changeTheme();
+    }
+
+    // setInterval 메소드
+    getTime()
+    setInterval(getTime, 1000);
+  </script>
+</body>
+</html>
