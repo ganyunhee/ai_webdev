@@ -1,0 +1,51 @@
+import React from 'react'
+import { createStore } from 'redux'
+import { Provider, useSelector, useDispatch } from 'react-redux'
+
+// 리듀서 함수 만들기 : 내 상태 객체를 액션에 따라 관리해주는 놈
+function reducer(currentState, action){
+  if(currentState === undefined){
+    return { number : 1 }
+  }
+
+  const newState = { ...currentState }
+  if(action.type === "PLUS"){
+    newState.number++;
+  }
+  return newState
+}
+
+const myStore = createStore(reducer)
+
+export default function App(){
+  return (
+    <div>
+      <Provider store={myStore}>
+        <Left />
+        <Right />
+      </Provider>
+    </div>
+  )
+}
+
+function Left(){
+  const number = useSelector((state) => { return state.number })
+  return <>
+    <h1>{number}</h1>
+  </>
+}
+
+function Right(){
+  const dispatch = useDispatch()
+  return <>
+    <button onClick={() => {
+      dispatch({ type: "PLUS" })
+    }}>+</button>
+  </>
+}
+
+App01.js 제가 방금 라이브로 한 버전과 
+깃허브에 있는 버전을 함께 보는 시간!
+
+
+5~10분 정도 더 드리겠습니다. PLUS 뿐 아니라 MINUS 도 직접 구현해보세요!
