@@ -25,7 +25,7 @@ function App() {
         <Row className="w-75 m-auto" >
           <Col className='text-end'>
             {/*이미지 파일의 기본 폴더는 public*/}
-            <Image src="./jason-mask.png" alt="프로필 사진" 
+            <Image src="./logo192.png" alt="프로필 사진" 
             style={{ border: '1px solid #ff0000', width: 300 }} 
             roundedCircle />
           </Col>
